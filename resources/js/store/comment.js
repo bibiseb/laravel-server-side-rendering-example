@@ -27,6 +27,10 @@ export const useComment = defineStore('comment', {
             } finally {
                 this.fetching = false
             }
+        },
+        clear() {
+            this.comments = []
+            this.loaded = false
         }
     }
 })

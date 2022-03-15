@@ -13,7 +13,7 @@
 <script>
 import { mapState, mapActions } from 'pinia'
 import { useTodo } from '../store/todo'
-import { useMetadata } from '../store/metadata'
+import metadataMixin from '../mixins/metadata'
 
 export default {
     computed: {
@@ -21,8 +21,7 @@ export default {
     },
 
     methods: {
-        ...mapActions(useTodo, ['fetch', 'clear']),
-        ...mapActions(useMetadata, ['setTitle'])
+        ...mapActions(useTodo, ['fetch', 'clear'])
     },
 
     async serverPrefetch() {
@@ -44,6 +43,8 @@ export default {
 
     unmounted() {
         this.clear()
-    }
+    },
+
+    mixins: [metadataMixin]
 }
 </script>

@@ -16,7 +16,7 @@
 <script>
 import { mapState, mapActions } from 'pinia'
 import { useComment } from '../store/comment'
-import { useMetadata } from '../store/metadata'
+import metadataMixin from '../mixins/metadata'
 
 export default {
     computed: {
@@ -24,8 +24,7 @@ export default {
     },
 
     methods: {
-        ...mapActions(useComment, ['fetch']),
-        ...mapActions(useMetadata, ['setTitle'])
+        ...mapActions(useComment, ['fetch', 'clear'])
     },
 
     async serverPrefetch() {
@@ -43,6 +42,12 @@ export default {
         } catch (error) {
             console.error(error)
         }
-    }
+    },
+
+    unmounted() {
+        this.clear()
+    },
+
+    mixins: [metadataMixin]
 }
 </script>

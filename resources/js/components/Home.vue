@@ -6,7 +6,17 @@
 </template>
 
 <script>
-export default {
+import metadataMixin from '../mixins/metadata'
 
+export default {
+    serverPrefetch() {
+        this.setTitle('Home')
+    },
+
+    mounted() {
+        this.setTitle('Home')
+    },
+
+    mixins: [metadataMixin]
 }
 </script>

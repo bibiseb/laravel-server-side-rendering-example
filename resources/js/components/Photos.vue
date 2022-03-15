@@ -11,7 +11,7 @@
 <script>
 import { mapState, mapActions } from 'pinia'
 import { usePhoto } from '../store/photo'
-import { useMetadata } from '../store/metadata'
+import metadataMixin from '../mixins/metadata'
 
 export default {
     computed: {
@@ -19,8 +19,7 @@ export default {
     },
 
     methods: {
-        ...mapActions(usePhoto, ['fetch']),
-        ...mapActions(useMetadata, ['setTitle'])
+        ...mapActions(usePhoto, ['fetch', 'clear'])
     },
 
     async serverPrefetch() {
@@ -38,6 +37,12 @@ export default {
         } catch (error) {
             console.error(error)
         }
-    }
+    },
+
+    unmounted() {
+        this.clear()
+    },
+
+    mixins: [metadataMixin]
 }
 </script>

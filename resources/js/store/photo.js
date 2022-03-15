@@ -27,6 +27,10 @@ export const usePhoto = defineStore('photo', {
             } finally {
                 this.fetching = false
             }
+        },
+        clear() {
+            this.photos = []
+            this.loaded = false
         }
     }
 })

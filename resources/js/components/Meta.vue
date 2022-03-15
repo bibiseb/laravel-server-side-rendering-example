@@ -14,8 +14,9 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'pinia'
+import { mapState } from 'pinia'
 import { useMetadata } from '../store/metadata'
+import metadataMixin from '../mixins/metadata'
 
 export default {
     data() {
@@ -30,7 +31,6 @@ export default {
     },
 
     methods: {
-        ...mapActions(useMetadata, ['setLang', 'setTitle']),
         update() {
             this.setLang(this.innerLang)
             this.setTitle(this.innerTitle)
@@ -45,6 +45,8 @@ export default {
         this.setTitle('Meta')
         this.innerLang = this.lang
         this.innerTitle = this.title
-    }
+    },
+
+    mixins: [metadataMixin]
 }
 </script>
