@@ -1,0 +1,22 @@
+{
+    "private": true,
+    "scripts": {
+        "server": "mix --mix-config=./webpack.server.mix.js",
+        "server:production": "mix --mix-config=./webpack.server.mix.js --production",
+        "client": "mix --mix-config=./webpack.client.mix.js",
+        "client:watch": "mix watch --mix-config=./webpack.client.mix.js",
+        "client:production": "mix --mix-config=./webpack.client.mix.js --production"
+    },
+    "devDependencies": {
+        "axios": "^0.25",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "vue-loader": "^16.8.3"
+    },
+    "dependencies": {
+        "pinia": "^2.0.12",
+        "vue": "^3.2.31",
+        "vue-router": "^4.0.14"
+    }
+}
