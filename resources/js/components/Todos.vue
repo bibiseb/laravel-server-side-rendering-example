@@ -1,7 +1,3 @@
-<script setup>
-import { useTodo } from '../store/todo'
-</script>
-
 <template>
     <div>
         <h1>Todos</h1>
@@ -16,6 +12,8 @@ import { useTodo } from '../store/todo'
 
 <script>
 import { mapState, mapActions } from 'pinia'
+import { useTodo } from '../store/todo'
+import { useMetadata } from '../store/metadata'
 
 export default {
     computed: {
@@ -23,10 +21,12 @@ export default {
     },
 
     methods: {
-        ...mapActions(useTodo, ['fetch', 'clear'])
+        ...mapActions(useTodo, ['fetch', 'clear']),
+        ...mapActions(useMetadata, ['setTitle'])
     },
 
     async serverPrefetch() {
+        this.setTitle('Todos')
         await this.fetch()
     },
 
@@ -35,6 +35,7 @@ export default {
             return;
         }
         try {
+            this.setTitle('Todos')
             await this.fetch()
         } catch (error) {
             console.error(error)

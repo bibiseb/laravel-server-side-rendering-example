@@ -6,7 +6,7 @@ import router from './router'
 import pinia from './store'
 
 pinia.state.value = {
-    meta: {
+    metadata: {
         lang: context.lang,
         title: context.title
     }
@@ -25,11 +25,11 @@ router.isReady().then(() => {
         })
 
         const layout = `<!DOCTYPE html>
-<html lang="${context.lang}">
+<html lang="${pinia.state.value.metadata.lang}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>${context.title}</title>
+        <title>${pinia.state.value.metadata.title}</title>
     </head>
     <body>
         ${app}

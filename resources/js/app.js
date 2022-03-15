@@ -2,8 +2,9 @@ import { createSSRApp, createApp } from 'vue'
 import router from './router'
 import pinia from './store'
 import App from './components/App'
+import { isServer } from './helpers'
 
-const app = typeof window === 'undefined' ? createSSRApp(App) : createApp(App)
+const app = isServer() ? createSSRApp(App) : createApp(App)
 
 app.use(router).use(pinia)
 

@@ -1,7 +1,3 @@
-<script setup>
-import { usePhoto } from '../store/photo'
-</script>
-
 <template>
     <div>
         <h1>Photos</h1>
@@ -14,6 +10,8 @@ import { usePhoto } from '../store/photo'
 
 <script>
 import { mapState, mapActions } from 'pinia'
+import { usePhoto } from '../store/photo'
+import { useMetadata } from '../store/metadata'
 
 export default {
     computed: {
@@ -21,10 +19,12 @@ export default {
     },
 
     methods: {
-        ...mapActions(usePhoto, ['fetch'])
+        ...mapActions(usePhoto, ['fetch']),
+        ...mapActions(useMetadata, ['setTitle'])
     },
 
     async serverPrefetch() {
+        this.setTitle('Photos')
         await this.fetch()
     },
 
@@ -33,6 +33,7 @@ export default {
             return;
         }
         try {
+            this.setTitle('Photos')
             await this.fetch()
         } catch (error) {
             console.error(error)

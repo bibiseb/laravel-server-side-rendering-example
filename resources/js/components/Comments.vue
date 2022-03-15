@@ -1,7 +1,3 @@
-<script setup>
-import { useComment } from '../store/comment'
-</script>
-
 <template>
     <div>
         <h1>Comments</h1>
@@ -19,6 +15,8 @@ import { useComment } from '../store/comment'
 
 <script>
 import { mapState, mapActions } from 'pinia'
+import { useComment } from '../store/comment'
+import { useMetadata } from '../store/metadata'
 
 export default {
     computed: {
@@ -26,10 +24,12 @@ export default {
     },
 
     methods: {
-        ...mapActions(useComment, ['fetch'])
+        ...mapActions(useComment, ['fetch']),
+        ...mapActions(useMetadata, ['setTitle'])
     },
 
     async serverPrefetch() {
+        this.setTitle('Comments')
         await this.fetch()
     },
 
@@ -38,6 +38,7 @@ export default {
             return;
         }
         try {
+            this.setTitle('Comments')
             await this.fetch()
         } catch (error) {
             console.error(error)

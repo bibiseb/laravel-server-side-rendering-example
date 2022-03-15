@@ -1,18 +1,10 @@
 import { defineStore } from 'pinia'
 
-export const useMeta = defineStore('meta', {
+export const useMetadata = defineStore('metadata', {
     state: () => {
         return {
             lang: '',
             title: ''
-        }
-    },
-    getters: {
-        lang(state) {
-            return state.lang
-        },
-        title(state) {
-            return state.title
         }
     },
     actions: {
