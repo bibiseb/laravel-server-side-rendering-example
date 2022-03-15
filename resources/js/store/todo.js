@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import todoApi from '../api/todo'
+import todoApi from '../api/jsonplaceholder/todo'
 
 export const useTodo = defineStore('todo', {
     state: () => {

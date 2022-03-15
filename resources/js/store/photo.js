@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import photoApi from '../api/photo'
+import photoApi from '../api/jsonplaceholder/photo'
 
 export const usePhoto = defineStore('photo', {
     state: () => {

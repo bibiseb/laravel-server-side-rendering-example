@@ -1,4 +1,4 @@
-import http from './jsonplaceholder'
+import http from '.'
 
 export default {
     get() {

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import commentApi from '../api/comment'
+import commentApi from '../api/jsonplaceholder/comment'
 
 export const useComment = defineStore('comment', {
     state: () => {
