@@ -5,6 +5,13 @@ import app from './app'
 import router from './router'
 import pinia from './store'
 
+pinia.state.value = {
+    meta: {
+        lang: context.lang,
+        title: context.title
+    }
+}
+
 router.push(context.url)
 
 router.isReady().then(() => {
