@@ -7,7 +7,6 @@
                 <li><router-link to="/todos">Todos</router-link></li>
                 <li><router-link to="/comments">Comments</router-link></li>
                 <li><router-link to="/meta">Meta</router-link></li>
-                <li><router-link to="/async">Async</router-link></li>
             </ul>
         </nav>
         <router-view></router-view>
@@ -19,3 +18,9 @@ export default {
 
 }
 </script>
+
+<style>
+main {
+    background: grey;
+}
+</style>

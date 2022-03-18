@@ -4,7 +4,6 @@ import Photos from './components/Photos'
 import Todos from './components/Todos'
 import Comments from './components/Comments'
 import Meta from './components/Meta'
-import Async from './components/Async'
 import { isServer } from './helpers'
 
 const routes = [
@@ -13,7 +12,6 @@ const routes = [
     { path: '/todos', component: Todos },
     { path: '/comments', component: Comments },
     { path: '/meta', component: Meta },
-    { path: '/async', component: Async },
 ]
 
 const router = createRouter({
