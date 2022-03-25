@@ -14,26 +14,36 @@
 </template>
 
 <script>
-import { mapState } from 'pinia'
+import { ref, computed } from 'vue'
 import { useMetadata } from '../store/metadata'
 import metadataMixin from '../mixins/metadata'
 
 export default {
-    data() {
-        return {
-            innerLang: '',
-            innerTitle: ''
+    mixins: [metadataMixin],
+
+    setup() {
+        const store = useMetadata()
+        const setLang = (lang) => {
+            store.setLang(lang)
         }
-    },
+        const setTitle = (title) => {
+            store.setTitle(title)
+        }
+        const innerLang = ref('')
+        const innerTitle = ref('')
+        const update = () => {
+            setLang(innerLang.value)
+            setTitle(innerTitle.value)
+        }
 
-    computed: {
-        ...mapState(useMetadata, ['lang', 'title'])
-    },
-
-    methods: {
-        update() {
-            this.setLang(this.innerLang)
-            this.setTitle(this.innerTitle)
+        return {
+            innerLang,
+            innerTitle,
+            update,
+            lang: computed(() => store.lang),
+            title: computed(() => store.title),
+            setLang,
+            setTitle
         }
     },
 
@@ -45,8 +55,6 @@ export default {
         this.setTitle('Meta')
         this.innerLang = this.lang
         this.innerTitle = this.title
-    },
-
-    mixins: [metadataMixin]
+    }
 }
 </script>

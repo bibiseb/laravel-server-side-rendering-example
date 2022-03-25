@@ -11,24 +11,27 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'pinia'
+import { computed } from 'vue'
 import { useTodo } from '../store/todo'
 import metadataMixin from '../mixins/metadata'
 
 export default {
-    computed: {
-        ...mapState(useTodo, { todos: 'results', loaded: 'loaded', fetching: 'fetching' })
-    },
+    mixins: [metadataMixin],
+    setup() {
+        const store = useTodo()
 
-    methods: {
-        ...mapActions(useTodo, ['fetch', 'clear'])
+        return {
+            todos: computed(() => store.results),
+            loaded: computed(() => store.loaded),
+            fetching: computed(() => store.fetching),
+            fetch: () => store.fetch(),
+            clear: () => store.clear()
+        }
     },
-
     async serverPrefetch() {
         this.setTitle('Todos')
         await this.fetch()
     },
-
     async mounted() {
         if (this.loaded) {
             return;
@@ -40,11 +43,8 @@ export default {
             console.error(error)
         }
     },
-
     unmounted() {
         this.clear()
-    },
-
-    mixins: [metadataMixin]
+    }
 }
 </script>
